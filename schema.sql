@@ -55,3 +55,24 @@ INSERT INTO local_name (species_id,name,language) VALUES
 (20,'Atis','Filipino');
 -- Placeholder: every species linked to all regions. Replace with real distribution data.
 INSERT INTO species_region (species_id,region_id) SELECT s.id,r.id FROM species s CROSS JOIN region r;
+-- Image paths (files in /images)
+UPDATE species SET image_url='images/indian-mallow.jpg' WHERE id=1;
+UPDATE species SET image_url='images/indian-pennywort.jpg' WHERE id=2;
+UPDATE species SET image_url='images/snake-weed.jpg' WHERE id=3;
+UPDATE species SET image_url='images/soya-bean.jpg' WHERE id=4;
+UPDATE species SET image_url='images/aarons-rod.jpg' WHERE id=5;
+UPDATE species SET image_url='images/ringworm-shrub.jpg' WHERE id=6;
+UPDATE species SET image_url='images/wild-mustard.jpg' WHERE id=7;
+UPDATE species SET image_url='images/rose-apple.jpg' WHERE id=8;
+UPDATE species SET image_url='images/bermuda-grass.jpg' WHERE id=9;
+UPDATE species SET image_url='images/sensitive-plant.jpg' WHERE id=10;
+UPDATE species SET image_url='images/four-oclock.jpg' WHERE id=11;
+UPDATE species SET image_url='images/drumstick.jpg' WHERE id=12;
+UPDATE species SET image_url='images/banana.jpg' WHERE id=13;
+UPDATE species SET image_url='images/sweet-basil.jpg' WHERE id=14;
+UPDATE species SET image_url='images/phyllanthus.jpg' WHERE id=15;
+UPDATE species SET image_url='images/purslane.jpg' WHERE id=16;
+UPDATE species SET image_url='images/mexican-daisy.jpg' WHERE id=17;
+UPDATE species SET image_url='images/ivory-tree.jpg' WHERE id=18;
+UPDATE species SET image_url='images/soursop.jpg' WHERE id=19;
+UPDATE species SET image_url='images/custard-apple.jpg' WHERE id=20;
