@@ -12,7 +12,7 @@ main{max-width:1100px;margin:0 auto;padding:24px}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
 .c{background:var(--card);border:1px solid var(--line);text-decoration:none;color:inherit}
 .ph{aspect-ratio:4/3;background:linear-gradient(160deg,var(--ph),#9db89a);display:grid;place-items:center;font-size:44px}
-.c div.t{padding:12px}.c h3{margin:0;font-weight:400;font-size:20px}.c i{color:var(--mut);font-size:14px}
+.c{opacity:0;transform:translateY(60px);transition:opacity .6s ease,transform .7s cubic-bezier(.2,.9,.3,1.15)}.c.in{opacity:1;transform:none}@media(prefers-reduced-motion:reduce){.c{opacity:1;transform:none;transition:none}}.c div.t{padding:12px}.c h3{margin:0;font-weight:400;font-size:20px}.c i{color:var(--mut);font-size:14px}
 .d{display:grid;grid-template-columns:1fr 1fr;background:var(--card);min-height:560px}
 .ph{overflow:hidden}.ph img{width:100%;height:100%;object-fit:cover;display:block}.d .ph img{position:absolute;inset:0}.d .ph a{z-index:1}.d .ph{aspect-ratio:auto;font-size:120px;position:relative}.d .ph a{position:absolute;top:0;left:0;width:60%;padding:18px 16px 44px;font-size:14px;color:#fff;border:0;text-shadow:0 1px 3px rgba(0,0,0,.6);background:linear-gradient(to right,rgba(0,0,0,.7),rgba(0,0,0,0))}
 .info{padding:28px 32px;background:var(--bg)}.tag{background:var(--btn);color:#fff;font:12px system-ui;padding:5px 9px;display:inline-block;margin-right:6px}
@@ -37,8 +37,10 @@ function show(p){m.innerHTML=`<div class="d"><div class="ph">${p.img?`<img src="
 <details><summary>Distribution</summary><p>${p.regions.join(', ')}</p></details>
 <details><summary>More information</summary><p>Source: Amazing Healing Plants by Dr. JC Kurian. Images: Dr. JC Kurian and Roshan Raphael.</p></details>
 <p class="src">Traditional uses only. Not medical advice.</p>${p.toxic?'<p class="src"><b>Toxic:</b> handle with care.</p>':''}</div></div>`}
-function route(){const p=D.find(x=>'#'+x.id==location.hash);p?show(p):list();scrollTo(0,0)}
-q.oninput=()=>{location.hash='';list()};addEventListener('hashchange',route);
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.15});
+function fade(){document.querySelectorAll('.c').forEach(c=>io.observe(c))}
+function route(){const p=D.find(x=>'#'+x.id==location.hash);p?show(p):(list(),fade());scrollTo(0,0)}
+q.oninput=()=>{location.hash='';list();fade()};addEventListener('hashchange',route);
 const th=document.getElementById('th');th.onclick=()=>{const d=document.documentElement.dataset.theme=='dark';document.documentElement.dataset.theme=d?'':'dark';th.textContent=d?'Dark mode':'Light mode'};
 route();
 </script></body></html>
